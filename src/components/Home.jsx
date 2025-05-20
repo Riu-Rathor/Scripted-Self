@@ -18,7 +18,7 @@ const Home = () => {
         <Skills/>
         <CodingProfiles/>
         <Contact/>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }
