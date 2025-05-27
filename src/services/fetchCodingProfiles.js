@@ -1,47 +1,61 @@
-
 export const fetchGitHubProfile = async (username) => {
-  const res = await fetch(`https://api.github.com/users/${username}`);
-  if (!res.ok) throw new Error('GitHub fetch failed');
+  const res = await fetch(`https://api.github.com/users/${username}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
+    },
+  });
+  if (!res.ok) throw new Error("GitHub fetch failed");
   return res.json();
 };
 
-export const fetchLeetCodeProfile = async (username) => {
-  const graphqlQuery = {
-    query: `
-      {
-        matchedUser(username: "${username}") {
-          username
-          submitStats: submitStatsGlobal {
-            acSubmissionNum {
-              difficulty
-              count
+export const fetchGitHubContributions = async () => {
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
+    },
+    body: JSON.stringify({
+      query: `query {
+        user(login: "Riu-Rathor") {
+          contributionsCollection {
+            contributionCalendar {
+              weeks {
+                contributionDays {
+                  color
+                  contributionCount
+                  date
+                }
+              }
             }
           }
         }
-      }
-    `,
-  };
+      }`,
+    }),
+  });
 
+  const data = await response.json();
+  console.log(data);
+  return data.data.user.contributionsCollection.contributionCalendar.weeks;
+};
+
+
+export const fetchLeetCodeProfile = async (username) => {
   const res = await fetch(
-    `https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql`,
+    `https://leetcode-stats-api.herokuapp.com/${username}`,
+
     {
-      method: 'POST',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(graphqlQuery),
     }
   );
 
-  if (!res.ok) throw new Error('LeetCode fetch failed');
+  if (!res.ok) throw new Error("LeetCode fetch failed");
   const json = await res.json();
-  return json.data.matchedUser;
-};
-
-export const fetchGFGProfile = async (username) => {
-  const res = await fetch(
-    `https://gfg-profile-summary-api.vercel.app/api/${username}`
-  );
-  if (!res.ok) throw new Error('GFG fetch failed');
-  return res.json();
+  console.log(json);
+  return json;
 };

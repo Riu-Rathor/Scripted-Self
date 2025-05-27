@@ -19,7 +19,8 @@ export const SECTION_HEADERS = {
   CONTACT: "Contact Me",
   EDUCATION: "Education",
   EXPERIENCE: "Work Experience",
-  SKILLS: "My Skills"
+  SKILLS: "My Skills",
+  CODING_PROFILE: "Coding Profile"
 }
 
 export const NAME = "Rishit";
