@@ -3,7 +3,7 @@ import Header from './Header';
 import About from './About';
 import Education from './Education';
 import Experience from './Experience';
-import CodingProfiles from './CodingProfiles';
+import CodingProfile from './CodingProfile';
 import Contact from './Contact';
 import Footer from './Footer';
 import Skills from './Skills';
@@ -16,9 +16,9 @@ const Home = () => {
         <Education/>
         <Experience/>
         <Skills/>
-        <CodingProfiles/>
+        <CodingProfile/>
         <Contact/>
-        {/* <Footer/> */}
+        <Footer/>
     </div>
   )
 }

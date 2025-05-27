@@ -4,12 +4,11 @@ import emailjs from "@emailjs/browser";
 const Contact = () => {
   const form = useRef();
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = (e) => {
-    console.log("Service ID:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
-    console.log("Template ID:",process.env.REACT_APP_EMAILJS_SERVICE_ID);
-    console.log("Public Key:", process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
     e.preventDefault();
+    setLoading(true);
 
     emailjs
       .sendForm(
@@ -19,57 +18,128 @@ const Contact = () => {
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       )
       .then(
-        (result) => {
-          setStatus("Message sent successfully!");
+        () => {
+          setStatus("✅ Message sent successfully!");
           form.current.reset();
+          setLoading(false);
+
+          setTimeout(() => setStatus(""), 5000);
         },
         (error) => {
-          setStatus("Failed to send message. Please try again later.");
+          setStatus("❌ Failed to send message. Please try again later.");
           console.error(error.text);
+          setLoading(false);
+
+          setTimeout(() => setStatus(""), 5000);
         }
       );
   };
 
   return (
-    <div className="max-w-lg p-6 bg-gray-800 text-white rounded shadow-md mb-16">
-      <h2 className="text-2xl font-bold mb-4 text-cyan-400">Contact Us</h2>
-      <form ref={form} onSubmit={sendEmail} className="space-y-4">
-        <div>
-          <label className="block mb-1">Your Name</label>
-          <input
-            type="text"
-            name="user_name"
-            required
-            className="w-full px-4 py-2 rounded bg-gray-700 text-white"
-          />
-        </div>
-        <div>
-          <label className="block mb-1">Your Email</label>
-          <input
-            type="email"
-            name="user_email"
-            required
-            className="w-full px-4 py-2 rounded bg-gray-700 text-white"
-          />
-        </div>
-        <div>
-          <label className="block mb-1">Message</label>
-          <textarea
-            name="message"
-            rows="5"
-            required
-            className="w-full px-4 py-2 rounded bg-gray-700 text-white"
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded transition"
-        >
-          Send
-        </button>
-      </form>
-      {status && <p className="mt-4 text-sm text-green-400">{status}</p>}
-    </div>
+    <section id='contact' className="min-h-screen bg-gradient-to-b from-gray-900 to-black flex items-center justify-center px-4 py-16">
+      <div
+        className="w-full max-w-2xl bg-gray-800 rounded-2xl p-8 shadow-lg border border-cyan-500 
+        hover:shadow-cyan-500/30 hover:shadow-2xl transition-transform transform duration-300"
+      >
+        <h2 className="text-4xl font-bold text-center text-cyan-400 mb-6">
+          Contact Me
+        </h2>
+        <p className="text-center text-gray-300 mb-8">
+          Got a question or want to work together? Drop a message!
+        </p>
+        <form ref={form} onSubmit={sendEmail} className="space-y-6">
+          <div>
+            <label className="block mb-2 text-sm font-medium text-white">
+              Name
+            </label>
+            <input
+              type="text"
+              name="user_name"
+              required
+              className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white"
+            />
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-white">
+              Email
+            </label>
+            <input
+              type="email"
+              name="user_email"
+              required
+              className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-white">Subject</label>
+            <input
+              type="text"
+              name="subject"
+              required
+              className="w-full px-4 py-2 rounded bg-gray-700 text-white"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-white">
+              Message
+            </label>
+            <textarea
+              name="message"
+              rows="5"
+              required
+              className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white resize-none"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 
+            text-white font-semibold rounded-lg shadow-lg transition duration-300
+            ${
+              loading
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:from-cyan-600 hover:to-blue-600 hover:scale-105"
+            }`}
+          >
+            {loading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8H4z"
+                  ></path>
+                </svg>
+                <span>Sending...</span>
+              </div>
+            ) : (
+              "🚀 Send Message"
+            )}
+          </button>
+        </form>
+        {status && (
+          <p className="mt-6 text-center text-sm text-green-400 font-medium animate-pulse">
+            {status}
+          </p>
+        )}
+      </div>
+      
+    </section>
   );
 };
 
