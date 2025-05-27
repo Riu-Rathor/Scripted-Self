@@ -1,9 +1,12 @@
-import { skills } from '../data/skills';
+import { SECTION_HEADERS } from "../constants";
+import { skills } from "../data/skills";
 
 const Skills = () => {
   return (
-    <div id='skills' className="min-h-screen bg-gray-900 text-white py-16 px-4">
-      <h2 className="text-4xl font-bold text-center text-cyan-400 mb-10">My Skills</h2>
+    <div id="skills" className="min-h-screen bg-gray-900 text-white py-16 px-4">
+      <h2 className="text-4xl font-bold text-center text-cyan-400 mb-10">
+        {SECTION_HEADERS.SKILLS}
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
         {skills.map(({ name, icon: Icon, color }, index) => (
           <div

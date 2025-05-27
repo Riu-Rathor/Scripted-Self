@@ -1,3 +1,4 @@
+import { SECTION_HEADERS } from "../constants";
 import { experience } from "../data/experience";
 import { FaMapMarkerAlt, FaCalendarAlt, FaCode } from "react-icons/fa";
 
@@ -6,7 +7,7 @@ const Experience = () => {
     <section id="experience" className="bg-gray-900 text-white py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-cyan-400 mb-14 tracking-wide">
-          Work Experience
+          {SECTION_HEADERS.EXPERIENCE}
         </h2>
 
         {experience.map((job, index) => (

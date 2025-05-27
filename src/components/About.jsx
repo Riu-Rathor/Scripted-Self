@@ -1,6 +1,7 @@
 import { ReactTyped } from "react-typed";
 import PROFILE_IMAGE from "../assets/profile-image.jpg";
 import { HashLink } from "react-router-hash-link";
+import { BTN_TEXT, RUNNING_TEXT_SKILLS, NAME } from "../constants";
 
 const About = () => {
   return (
@@ -9,17 +10,12 @@ const About = () => {
         {/* Text Section */}
         <div className="flex-1">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            👋 Hey, I’m <span className="text-cyan-400">Rishit</span>.
+            👋 Hey, I’m <span className="text-cyan-400">{NAME}</span>.
           </h1>
 
           <h2 className="text-2xl text-cyan-300 mb-6">
             <ReactTyped
-              strings={[
-                "Software Engineer",
-                "Frontend Developer",
-                "React Developer",
-                "Problem Solver",
-              ]}
+              strings={RUNNING_TEXT_SKILLS}
               typeSpeed={60}
               backSpeed={40}
               backDelay={1500}
@@ -49,14 +45,14 @@ const About = () => {
               to="#projects"
               className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg transition"
             >
-              View My Work
+              {BTN_TEXT.VIEW_MY_WORK}
             </HashLink>
             <HashLink
               smooth
               to="#contact"
               className="border border-cyan-500 text-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-500 hover:text-white transition"
             >
-              Contact Me
+              {BTN_TEXT.CONTACT_ME}
             </HashLink>
           </div>
         </div>

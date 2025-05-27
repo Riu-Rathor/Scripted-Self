@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { SECTION_HEADERS } from "../constants";
 
 const Contact = () => {
   const form = useRef();
@@ -42,7 +43,7 @@ const Contact = () => {
         hover:shadow-cyan-500/30 hover:shadow-2xl transition-transform transform duration-300"
       >
         <h2 className="text-4xl font-bold text-center text-cyan-400 mb-6">
-          Contact Me
+          {SECTION_HEADERS.CONTACT}
         </h2>
         <p className="text-center text-gray-300 mb-8">
           Got a question or want to work together? Drop a message!
