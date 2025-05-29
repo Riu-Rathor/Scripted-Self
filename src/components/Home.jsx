@@ -7,6 +7,7 @@ import CodingProfile from './CodingProfile';
 import Contact from './Contact';
 import Footer from './Footer';
 import Skills from './Skills';
+import Projects from './Projects';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         <Experience/>
         <Skills/>
         <CodingProfile/>
+        <Projects/>
         <Contact/>
         <Footer/>
     </div>

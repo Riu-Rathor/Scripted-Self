@@ -39,7 +39,7 @@ const CodingProfile = () => {
   }, []);
 
   return (
-    <div className="p-6 space-y-8 text-white bg-gray-900 min-h-screen">
+    <div id="coding-profile" className="p-6 space-y-8 text-white bg-gray-900 pt-16">
       <h1 className="text-4xl font-bold text-cyan-400 mb-6 text-center">
         {SECTION_HEADERS.CODING_PROFILE}
       </h1>

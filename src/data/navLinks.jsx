@@ -3,6 +3,7 @@ export const navLinks = [
   { name: "Education", to: "#education" },
   { name: "Experience", to: "#experience" },
   { name: "Skills", to: "#skills" },
+  { name: "Coding Profile", to: "#coding-profile" },
+  { name: "Projects", to: "#projects" },
   { name: "Contact", to: "#contact" },
-  { name: "Project", to: "#project" },
 ];

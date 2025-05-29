@@ -3,7 +3,7 @@ import { skills } from "../data/skills";
 
 const Skills = () => {
   return (
-    <div id="skills" className="min-h-screen bg-gray-900 text-white py-16 px-4">
+    <div id="skills" className=" bg-gray-900 text-white pt-16 px-4">
       <h2 className="text-4xl font-bold text-center text-cyan-400 mb-10">
         {SECTION_HEADERS.SKILLS}
       </h2>
